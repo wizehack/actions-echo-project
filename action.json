@@ -11,7 +11,7 @@
         "intent": "assistant.intent.action.MAIN"
       },
       "httpExecution": {
-        "url": "https://thawing-temple-28562.herokuapp.com/"
+        "url": "https://enigmatic-escarpment-71181.herokuapp.com/"
       }
     }
   ]

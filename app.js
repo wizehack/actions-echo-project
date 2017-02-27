@@ -47,24 +47,36 @@ app.post('/', function (request, response) {
             /*
              * send rawInput to webhook server;
              */
-            let request = require('request');
-            let postBody = {"query": rawInput};
-            let inputPrompt;
-            request.post(
-                    '',
-                    {'query': rawInput},
-                    function (error, response, postBody){
-                        if(!error && response.statusCode == 200) {
-                            let body = response.getBody();
-                            inputPrompt = assistant.buildInputPrompt(false, body.speech,
-                                    ['I didn\'t hear', 'Are you there?', 'Please say whatever you want.']);
-                        
-                        } else {
-                            inputPrompt = assistant.buildInputPrompt(false, rawInput,
-                                    ['I didn\'t hear', 'Are you there?', 'Please say whatever you want.']);
-                        }
-                    }
-                    );
+            let httpRequest = require('request');
+            let query = JSON.stringify(request.body);
+
+            // set the header
+            let headers = {'Content-Type': 'application/json'}
+
+            // configure the request
+            let options = {
+                url: 'http://52.39.36.22:8000/',
+                method: 'POST',
+                headers: headers,
+                form: query 
+            }
+
+            console.log('request to server');
+            httpRequest(options, function(error,httpResponse, body) {
+                if(!error && httpResponse.statusCode == 200) {
+                    console.log('success! response data');
+                    console.log(body)
+                } else {
+                    console.log('response code');
+                    console.log(httpResponse.statusCode)
+                    console.log('response body');
+                    console.log(body);
+                }
+            });
+
+            let inputPrompt = assistant.buildInputPrompt(false, rawInput,
+                    ['I didn\'t hear', 'Are you there?', 'Please say whatever you want.']);
+
             assistant.ask(inputPrompt);
         }
     }
