@@ -1,0 +1,44 @@
+{
+  "name": "actions-echo-project",
+  "version": "0.0.1",
+  "description": "actions sdk project",
+  "engines": {
+    "node": "v6.10.0"
+  },
+  "scripts": {
+    "lint": "semistandard --fix \"**/*.js\"",
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud app deploy",
+    "test": "npm run init"
+  },
+  "semistandard": {
+    "globals": [
+      "after",
+      "afterEach",
+      "before",
+      "beforeEach",
+      "describe",
+      "it"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wizehack/actions-echo-project.git"
+  },
+  "author": "wizehack@gmail.com",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/wizehack/actions-echo-project/issues"
+  },
+  "homepage": "https://github.com/wizehack/actions-echo-project#readme",
+  "dependencies": {
+    "actions-on-google": "^1.0.7",
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "semistandard": "^9.1.0"
+  }
+}
